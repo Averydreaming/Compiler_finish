@@ -24,11 +24,11 @@ import Utils.MxStarErrorListener;
 
 public class Compiler {
     public static void main(String[] args) throws Exception {
-        String name = "C:\\Users\\31072\\Desktop\\Compiler-2021-testcases\\codegen\\e3.mx";
-        InputStream input = new FileInputStream(name);
-        PrintStream iroutput = new PrintStream("test.ll");
-        PrintStream asmoutput = new PrintStream("test.s");
-        //InputStream input = System.in;
+       // String name = "C:\\Users\\31072\\Desktop\\Compiler-2021-testcases\\codegen\\e3.mx";
+       // InputStream input = new FileInputStream(name);
+       // PrintStream iroutput = new PrintStream("test.ll");
+        PrintStream asmoutput = new PrintStream("output.s");
+        InputStream input = System.in;
 
         try {
             MxstarLexer lexer = new MxstarLexer(CharStreams.fromStream(input));
@@ -49,8 +49,8 @@ public class Compiler {
 
             IRBuilder ir_builder = new IRBuilder();
             ir_builder.visit(ast_root);
-            IRPrinter irPrinter = new IRPrinter(iroutput);
-            irPrinter.visit(ir_builder.global);
+           // IRPrinter irPrinter = new IRPrinter(iroutput);
+           // irPrinter.visit(ir_builder.global);
             ASMBuilder asm_builder = new ASMBuilder();
             asm_builder.visit(ir_builder.global);
             new RegAlloc(asm_builder.ASM_global);
